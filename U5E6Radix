@@ -1,0 +1,55 @@
+package u5e6.radix;
+import java.util.ArrayList;
+import java.util.List;
+
+public class U5E6Radix {
+    public static void main(String[] args) {
+        List <Integer> ALista= new ArrayList <Integer>();
+        Integer [] arreglo = new Integer[ALista.size()];
+        U5E6Radix obj = new U5E6Radix();
+        ALista.add(503);
+        ALista.add(573);
+	ALista.add(581);
+        ALista.add(625);
+        ALista.add(670);
+	ALista.add(762);
+        ALista.add(87);
+        ALista.add(512);
+        ALista.add(677);
+        ALista.add(694);
+        
+        arreglo=ALista.toArray(arreglo);
+        
+        System.out.println("Lista desordenada");
+        for(int i=0;i<=ALista.size()-1;i++){
+            System.out.print(ALista.get(i)+",");
+        }
+        obj.radix(arreglo);
+    }
+    public void radix(Integer arreglo[]){
+        int x,i,j;
+       
+        for(x=Integer.SIZE-1;x>=0;x--){
+           Integer aux []= new Integer [arreglo.length];
+           j=0;
+           for(i=0;i<arreglo.length;i++){
+               boolean mover = arreglo[i]<<x>=0;
+               if(x==0 ? !mover:mover){
+                   aux[j]=arreglo[i];
+                   j++;
+               }else{
+                   arreglo[i-j]=arreglo[i];
+               }
+           }
+           for(i=j;i<aux.length;i++){
+               aux[i]=arreglo[i-j];
+           }
+           arreglo=aux;
+        }
+        System.out.println("");
+        System.out.println("Lista Ordenada");
+        for(i=0;i<arreglo.length;i++){
+            System.out.print(arreglo[i]+",");
+        }
+    }
+}
